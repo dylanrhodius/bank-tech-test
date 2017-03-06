@@ -8,7 +8,6 @@ describe Bank do
     end
 
   describe '#deposit' do
-
     it 'updates balance when depositing a specific amount' do
       expect { bank.deposit 10 }.to change { bank.balance }.by 10
     end
@@ -17,9 +16,12 @@ describe Bank do
       message = "You cannot deposit 0 or a negative amount."
       expect { bank.deposit 0 }.to raise_error message
     end
+  end
 
-
-
+  describe '#withdraw' do
+    it 'updates balance when withdrawing a specific amount' do
+      expect { bank.withdraw 50 }.to change { bank.balance }.by -50
+    end
   end
 
 
