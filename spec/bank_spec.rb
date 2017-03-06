@@ -7,6 +7,10 @@ describe Bank do
       expect(bank.balance).to eq 0
     end
 
+    it 'instantiates a transaction_history class' do
+      expect(bank).to respond_to(:transaction_history)
+    end
+
   describe '#deposit' do
     it 'updates balance when depositing a specific amount' do
       expect { bank.deposit 10 }.to change { bank.balance }.by 10
@@ -29,6 +33,7 @@ describe Bank do
       expect { bank.withdraw 2 }.to raise_error message
     end
   end
+
 
 
 
