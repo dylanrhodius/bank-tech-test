@@ -23,7 +23,7 @@ describe Bank do
 
     it 'pushes a new deposit entry into the transactions array' do
       bank.deposit(10)
-      expect(bank.transaction_history.transactions).to include ( {:type=>:debit, :value=>10, :date=>"#{Time.new.strftime('%d/%m/%Y')}"} )
+      expect(bank.transaction_history.transactions).to include ( {date: "#{Time.new.strftime('%d/%m/%Y')}", type: :debit, value: 10, balance: 10 } )
     end
   end
 
@@ -41,7 +41,7 @@ describe Bank do
     it 'pushes a new withdrawal entry into the transactions array' do
       bank.deposit(20)
       bank.withdraw(10)
-      expect(bank.transaction_history.transactions).to include ( {:type=>:credit, :value=>10, :date=> "#{Time.new.strftime('%d/%m/%Y')}"} )
+      expect(bank.transaction_history.transactions).to include ( {date: "#{Time.new.strftime('%d/%m/%Y')}", type: :credit, value: 10, balance: 10 } )
     end
   end
 

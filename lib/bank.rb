@@ -6,6 +6,7 @@ class Bank
 
   DEFAULT_BALANCE = 0
 
+
   def initialize
     @balance = DEFAULT_BALANCE
     @transaction_history = TransactionHistory.new
@@ -14,13 +15,13 @@ class Bank
   def deposit(amount)
     raise "You cannot deposit £0 or a negative amount." if amount <= 0
     @balance += amount
-    @transaction_history.transactions << { type: :debit, value: amount, date: Time.new.strftime('%d/%m/%Y') }
+    @transaction_history.transactions << { date: Time.new.strftime('%d/%m/%Y'), type: :debit, value: amount, balance: @balance  }
   end
 
   def withdraw(amount)
     raise "You cannot withdraw a higher amount than your current balance." if amount > @balance
     @balance -= amount
-    @transaction_history.transactions << { type: :credit, value: amount, date: Time.new.strftime('%d/%m/%Y') }
+    @transaction_history.transactions << { date: Time.new.strftime('%d/%m/%Y'), type: :credit, value: amount, balance: @balance }
   end
 
 end
