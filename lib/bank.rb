@@ -14,6 +14,7 @@ class Bank
   def deposit(amount)
     raise "You cannot deposit £0 or a negative amount." if amount <= 0
     @balance += amount
+    @transaction_history.transactions << { type: :debit, value: amount, date: Time.new.strftime('%d/%m/%Y') }
   end
 
   def withdraw(amount)

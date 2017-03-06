@@ -20,6 +20,11 @@ describe Bank do
       message = "You cannot deposit £0 or a negative amount."
       expect { bank.deposit 0 }.to raise_error message
     end
+
+    it 'pushes a new deposit entry into the transactions array' do
+      bank.deposit(10)
+      expect(bank.transaction_history.transactions).to include ( {:type=>:debit, :value=>10, :date=>"06/03/2017"} )
+    end
   end
 
   describe '#withdraw' do
