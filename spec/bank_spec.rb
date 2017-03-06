@@ -23,7 +23,7 @@ describe Bank do
 
     it 'pushes a new deposit entry into the transactions array' do
       bank.deposit(10)
-      expect(bank.transaction_history.transactions).to include ( {:type=>:debit, :value=>10, :date=>"06/03/2017"} )
+      expect(bank.transaction_history.transactions).to include ( {:type=>:debit, :value=>10, :date=>"#{Time.new.strftime('%d/%m/%Y')}"} )
     end
   end
 
@@ -36,6 +36,12 @@ describe Bank do
     it 'raises an error if trying to withdraw more than the balance' do
       message = "You cannot withdraw a higher amount than your current balance."
       expect { bank.withdraw 2 }.to raise_error message
+    end
+
+    it 'pushes a new withdrawal entry into the transactions array' do
+      bank.deposit(20)
+      bank.withdraw(10)
+      expect(bank.transaction_history.transactions).to include ( {:type=>:credit, :value=>10, :date=> "#{Time.new.strftime('%d/%m/%Y')}"} )
     end
   end
 

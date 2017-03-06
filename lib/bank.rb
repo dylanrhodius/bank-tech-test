@@ -20,6 +20,7 @@ class Bank
   def withdraw(amount)
     raise "You cannot withdraw a higher amount than your current balance." if amount > @balance
     @balance -= amount
+    @transaction_history.transactions << { type: :credit, value: amount, date: Time.new.strftime('%d/%m/%Y') }
   end
 
 end
