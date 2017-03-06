@@ -10,9 +10,8 @@ describe Bank do
   describe '#deposit' do
     it { is_expected.to respond_to(:deposit).with(1).argument }
 
-    it 'updates balance when depositing money' do
-      bank.deposit(100)
-      expect(bank.balance).to eq 100
+    it 'updates balance' do
+      expect {bank.deposit 10 }.to change {bank.balance}.by 10
     end
 
   end
