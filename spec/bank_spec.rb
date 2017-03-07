@@ -20,6 +20,11 @@ describe Bank do
       message = "You cannot deposit £0 or a negative amount."
       expect { bank.deposit 0 }.to raise_error message
     end
+
+    it 'pushes a new entry into the transactions array' do
+      bank.deposit(10)
+      expect(bank.transaction_history.transactions[0].details).to include ( {:date=>"#{Time.new.strftime('%d/%m/%Y')}", :credit=>nil, :debit=>10, :balance=>10} )
+    end
   end
 
   describe '#withdraw' do
@@ -31,6 +36,12 @@ describe Bank do
     it 'raises an error if trying to withdraw more than the balance' do
       message = "You cannot withdraw a higher amount than your current balance."
       expect { bank.withdraw 2 }.to raise_error message
+    end
+
+    it 'pushes a new entry into the transactions array' do
+      bank.deposit(20)
+      bank.withdraw(10)
+      expect(bank.transaction_history.transactions[1].details).to include ( {:date=>"#{Time.new.strftime('%d/%m/%Y')}", :credit=>10, :debit=>nil, :balance=>10} )
     end
   end
 
