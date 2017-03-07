@@ -23,7 +23,7 @@ describe Bank do
 
     it 'pushes the transaction instance into transaction_history' do
      bank.deposit(10)
-     expect(bank.transaction_history.transactions[0]).to be_an_instance_of(Transaction)
+     expect(bank.transaction_history.transactions[0]).to eq({:date=>"07/03/2017", :credit=>10, :debit=>nil, :balance=>10})
     end
   end
 
@@ -41,7 +41,7 @@ describe Bank do
     it 'pushes a new entry into the transactions array' do
       bank.deposit(20)
       bank.withdraw(10)
-      expect(bank.transaction_history.transactions[1]).to be_an_instance_of(Transaction)
+      expect(bank.transaction_history.transactions[1]).to eq({:date=>"07/03/2017", :credit=>nil, :debit=>10, :balance=>10})
     end
   end
 
