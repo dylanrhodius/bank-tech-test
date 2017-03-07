@@ -27,7 +27,7 @@ class Bank
     @transaction_history.transactions << Transaction.new(credit: nil, debit: amount, balance: @balance).details
   end
 
-  def return_statement
+  def display_statement
     @statement_printer.display_statement(@transaction_history.transactions)
   end
 
