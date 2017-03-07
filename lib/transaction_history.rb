@@ -14,6 +14,6 @@ class TransactionHistory
       print_out << " ||" + " ||" + element[:value].to_s if element[:type].to_s == "debit"
       print_out << " ||" + element[:balance].to_s
     end
-    print_out
+    puts print_out
   end
 end
